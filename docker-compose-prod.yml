@@ -1,0 +1,40 @@
+version: "2"
+volumes:
+  staticfiles:
+services:
+  api:
+    environment:
+      - ENVIRONMENT=PRODUCTION
+      - HOST=www.app.vcap.me
+      - PORT=8000
+    depends_on:
+      - 'db'
+    ports:
+      - 8000
+    volumes:
+      - staticfiles:/code/staticfiles
+
+  www:
+    build:
+      args:
+        ENVIRONMENT: "localprod"
+    environment:
+      - VIRTUAL_HOST=www.app.vcap.me
+
+  api-nginx:
+    build:
+      context: .
+      dockerfile: ./DockerfileDjangoNginx
+    environment:
+      - VIRTUAL_HOST=api.app.vcap.me
+    depends_on:
+      - 'api'
+    volumes:
+      - staticfiles:/code/staticfiles
+
+  proxy:
+    image: jwilder/nginx-proxy:latest
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - '80:80'

@@ -1,3 +1,5 @@
+This is now Deprecated. Please check out https://github.com/AndrewGorman/Django-Vue-Docker-boilerplate
+
 # my-project
 
 > A Django - Vue.js project

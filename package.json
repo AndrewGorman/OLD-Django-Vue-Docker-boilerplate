@@ -17,7 +17,7 @@
     "jquery": "^3.5.1",
     "less": "^3.12.2",
     "popper.js": "^1.16.1",
-    "underscore": "^1.11.0",
+    "underscore": "^1.12.1",
     "vue": "^2.6.12",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.4.7",
